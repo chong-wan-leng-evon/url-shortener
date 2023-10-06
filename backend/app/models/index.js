@@ -5,12 +5,14 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
-  operatorsAliases: false,
+  operatorsAliases: false
 });
 
 const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
+db.urlShortenerModel = require("./url-shortener-model")(sequelize, Sequelize);
 
 module.exports = db;
